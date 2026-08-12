@@ -2,6 +2,7 @@ import { useState } from 'react'
 import PersonalForm from './components/personal-info/personalForm.jsx';
 import PersonalDetails from './components/personal-info/personalDetails.jsx';
 import EducationForm from './components/education/educationForm.jsx';
+import WorkForm from './components/work-exp/workForm.jsx';
 import './App.css'
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
     address: '',
     email: '',
     fullname: '',
-    phoneNumber: ''
+    phoneNumber: '',
   });
 
   const [educationInfo, setEducationInfo] = useState({
@@ -18,6 +19,14 @@ function App() {
     startDate: '',
     endDate: '',
     location: '',
+  });
+
+  const [workInfo, setWorkInfo] = useState({
+    companyName: '',
+    positionTitle: '',
+    responsibilities: '',
+    startDate: '',
+    endDate: '',
   })
 
   function handlePersonalInfoChange (e) {
@@ -48,6 +57,14 @@ function App() {
           endDate={educationInfo.endDate}
           location={educationInfo.location}
           onChange={handleEducationInfoChange}
+        />
+
+        <WorkForm
+          companyName={workInfo.companyName}
+          positionTitle={workInfo.positionTitle}
+          responsibilities={workInfo.responsibilities}
+          startDate={workInfo.startDate}
+          endDate={workInfo.endDate}
         />
       </div>
 
