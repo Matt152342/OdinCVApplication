@@ -2,10 +2,9 @@ import { useState } from "react";
 import InputGroup  from "../inputGroup";
 
 function PersonalForm ({address, email, fullname, phoneNumber, onChange}) {
-    const [isOpen, setIsOpen] = useState(true);
     
     return (
-        <div className="formSectionContainer">
+        <div className="formContainer">
             <div className="formHeader">
                 <h2>Personal Details</h2>
             </div>
@@ -48,10 +47,6 @@ function PersonalForm ({address, email, fullname, phoneNumber, onChange}) {
                     onChange={onChange}
                 />
             </form>
-
-            <div>
-                <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? "Close" : "Open"}</button>
-            </div>
         </div>
     )
 }
