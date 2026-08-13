@@ -2,8 +2,25 @@ import { useState } from 'react'
 import PersonalForm from './components/personal-info/personalForm.jsx';
 import PersonalDetails from './components/personal-info/personalDetails.jsx';
 import EducationForm from './components/education/educationForm.jsx';
+import EducationDetails from './components/education/educationDetails.jsx';
 import WorkForm from './components/work-exp/workForm.jsx';
-import './App.css'
+import './App.css';
+
+const initialEducation = {
+  schoolName: '',
+  degree: '',
+  startDate: '',
+  endDate: '',
+  location: '',
+}
+
+const initialWork = {
+  companyName: '',
+  positionTitle: '',
+  responsibilities: '',
+  startDate: '',
+  endDate: '',
+}
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -13,21 +30,11 @@ function App() {
     phoneNumber: '',
   });
 
-  const [educationInfo, setEducationInfo] = useState({
-    schoolName: '',
-    degree: '',
-    startDate: '',
-    endDate: '',
-    location: '',
-  });
+  const [educationInfo, setEducationInfo] = useState(initialEducation);
+  const [educationList, setEducationList] = useState([]);
 
-  const [workInfo, setWorkInfo] = useState({
-    companyName: '',
-    positionTitle: '',
-    responsibilities: '',
-    startDate: '',
-    endDate: '',
-  })
+  const [workInfo, setWorkInfo] = useState(initialWork);
+  const [workList, setWorkList] = useState([]);
 
   function handlePersonalInfoChange (e) {
     const { key } = e.target.dataset;
@@ -37,6 +44,38 @@ function App() {
   function handleEducationInfoChange (e) {
     const { key } = e.target.dataset;
     setEducationInfo({...educationInfo, [key]: e.target.value})
+  }
+
+  function handleWorkInfoChange (e) {
+    const { key } = e.target.dataset;
+    setWorkInfo({...workInfo, [key]: e.target.value})
+  }
+
+  function handleEducationSubmit (e) {
+    e.preventDefault();
+
+    const newEntry = {
+      ...educationInfo,
+      id: crypto.randomUUID(),
+    };
+
+    setEducationList([...educationList, newEntry]);
+    setEducationInfo(initialEducation);
+  }
+
+  function handleEducationListChange (id, e) {
+    const { key } = e.target.dataset;
+    const value = e.target.value;
+
+    return setEducationList((prevList) => {
+      return prevList.map((item) => {
+        if (item.id === id) {
+          return {...item, [key]: value};
+        }
+
+        return item;
+      });
+    });
   }
 
   return (
@@ -50,6 +89,22 @@ function App() {
           onChange={handlePersonalInfoChange}
         />
 
+        {
+          educationList.map((item) => {
+            return (
+              <EducationForm
+                key={item.id}
+                schoolName={item.schoolName}
+                degree={item.degree}
+                startDate={item.startDate}
+                endDate={item.endDate}
+                location={item.location}
+                onChange={(e) => handleEducationListChange(item.id, e)}
+              />
+            )
+          })
+        }
+
         <EducationForm
           schoolName={educationInfo.schoolName}
           degree={educationInfo.degree}
@@ -57,6 +112,7 @@ function App() {
           endDate={educationInfo.endDate}
           location={educationInfo.location}
           onChange={handleEducationInfoChange}
+          onSubmit={handleEducationSubmit}
         />
 
         <WorkForm
@@ -65,6 +121,7 @@ function App() {
           responsibilities={workInfo.responsibilities}
           startDate={workInfo.startDate}
           endDate={workInfo.endDate}
+          onChange={handleWorkInfoChange}
         />
       </div>
 
@@ -75,6 +132,20 @@ function App() {
           fullname={personalInfo.fullname}
           phoneNumber={personalInfo.phoneNumber}
         />
+
+        <h2 className="educationHeader">Education</h2>
+        {educationList.map((entry => {
+          return (
+            <EducationDetails
+              key={entry.id}
+              schoolName={entry.schoolName}
+              degree={entry.degree}
+              startDate={entry.startDate}
+              endDate={entry.endDate}
+              location={entry.location}
+            />
+          )
+        }))}
       </div>
     </>
   )

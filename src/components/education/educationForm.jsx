@@ -1,17 +1,17 @@
 import { useState } from "react";
 import InputGroup from "../inputGroup";
 
-function EducationForm ({schoolName, degree, startDate, endDate, location, onChange}) {
+function EducationForm ({schoolName, degree, startDate, endDate, location, onChange, onSubmit}) {
     const [isOpen, setisOpen] = useState(false);
 
     return (
         <div className="formContainer">
             <div className="formHeader" onClick={() => setisOpen(!isOpen)}>
-                <h2>Education</h2>
+                <h3>{schoolName ? `${schoolName}` : "New Education"}</h3>
             </div>
 
             <div className={`educationForm ${isOpen ? 'open' : 'hidden'}`}>
-                <form action="" id="educationForm">
+                <form action="" id="educationForm" onSubmit={onSubmit}>
                     <InputGroup
                         id="schoolName"
                         type="text"
@@ -61,15 +61,13 @@ function EducationForm ({schoolName, degree, startDate, endDate, location, onCha
                         labelText="Location"
                         onChange={onChange}
                     />
+
+                    <div className="educationBtns">
+                        <button className="delete">Delete</button>
+                        <button className="submit" type="submit">Submit</button>
+                    </div>
                 </form>
-
-                <div className="educationBtns">
-                    <button className="cancel">Cancel</button>
-                    <button className="submit" type="submit" form="educationForm">Submit</button>
-                </div>
             </div>
-
-            <button className={`add ${isOpen ? 'hidden' : ''}`}>Add</button>
         </div>
     )
 }

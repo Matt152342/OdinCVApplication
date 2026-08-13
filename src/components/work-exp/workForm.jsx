@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InputGroup  from "../inputGroup";
 
-function WorkForm ({companyName, positionTitle, responsibilities, startDate, endDate}) {
+function WorkForm ({companyName, positionTitle, responsibilities, startDate, endDate, onChange}) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -19,6 +19,7 @@ function WorkForm ({companyName, positionTitle, responsibilities, startDate, end
                         value={companyName}
                         dataKey="companyName"
                         labelText="Company Name"
+                        onChange={onChange}
                     />
                     <InputGroup
                         id="positionTitle"
@@ -27,6 +28,7 @@ function WorkForm ({companyName, positionTitle, responsibilities, startDate, end
                         value={positionTitle}
                         dataKey="positionTitle"
                         labelText="Position Title"
+                        onChange={onChange}
                     />
                     <InputGroup
                         id="responsibilities"
@@ -35,6 +37,7 @@ function WorkForm ({companyName, positionTitle, responsibilities, startDate, end
                         value={responsibilities}
                         dataKey="responsibilities"
                         labelText="Responsibilities"
+                        onChange={onChange}
                     />
 
                     <div className="dateGroup">
@@ -45,14 +48,16 @@ function WorkForm ({companyName, positionTitle, responsibilities, startDate, end
                             value={startDate}
                             dataKey="startDate"
                             labelText="Start Date"
+                            onChange={onChange}
                         />
                         <InputGroup
                             id="endDate"
                             type="text"
                             placeholder="December 2026"
                             value={endDate}
-                            datakey="endDate"
+                            dataKey="endDate"
                             labelText="End Date"
+                            onChange={onChange}
                         />
                     </div>
                 </form>
