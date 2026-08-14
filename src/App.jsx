@@ -4,6 +4,7 @@ import PersonalDetails from './components/personal-info/personalDetails.jsx';
 import EducationForm from './components/education/educationForm.jsx';
 import EducationDetails from './components/education/educationDetails.jsx';
 import WorkForm from './components/work-exp/workForm.jsx';
+import WorkDetails from './components/work-exp/workDetails.jsx';
 import './App.css';
 
 const initialEducation = {
@@ -78,6 +79,33 @@ function App() {
     });
   }
 
+  function handleWorkSubmit (e) {
+    e.preventDefault();
+
+    const newEntry = {
+      ...workInfo,
+      id: crypto.randomUUID(),
+    };
+
+    setWorkList([...workList, newEntry]);
+    setWorkInfo(initialWork);
+  }
+
+  function handleWorkListChange (id, e) {
+    const {key} = e.target.dataset;
+    const value = e.target.value;
+
+    setWorkList((prevList) => {
+      return prevList.map((item) => {
+        if (item.id === id) {
+          return {...item, [key]: value};
+        }
+
+        return item;
+      });
+    });
+  }
+
   return (
     <>
       <div className="formSection">
@@ -115,6 +143,22 @@ function App() {
           onSubmit={handleEducationSubmit}
         />
 
+        {
+          workList.map((item) => {
+            return (
+              <WorkForm
+                key={item.id}
+                companyName={item.companyName}
+                positionTitle={item.positionTitle}
+                responsibilities={item.responsibilities}
+                startDate={item.startDate}
+                endDate={item.endDate}
+                onChange={(e) => handleWorkListChange(item.id, e)}
+              />
+            )
+          })
+        }
+
         <WorkForm
           companyName={workInfo.companyName}
           positionTitle={workInfo.positionTitle}
@@ -122,6 +166,7 @@ function App() {
           startDate={workInfo.startDate}
           endDate={workInfo.endDate}
           onChange={handleWorkInfoChange}
+          onSubmit={handleWorkSubmit}
         />
       </div>
 
@@ -146,6 +191,20 @@ function App() {
             />
           )
         }))}
+
+        <h2 className="workHeader">Work</h2>
+        {workList.map((entry) => {
+          return (
+            <WorkDetails
+              key={entry.id}
+              companyName={entry.companyName}
+              positionTitle={entry.positionTitle}
+              responsibilities={entry.responsibilities}
+              startDate={entry.startDate}
+              endDate={entry.endDate}
+            />
+          )
+        })}
       </div>
     </>
   )
