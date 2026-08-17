@@ -32,7 +32,7 @@ function WorkForm ({companyName, positionTitle, responsibilities, startDate, end
                     />
                     <InputGroup
                         id="responsibilities"
-                        type="text"
+                        type="textarea"
                         placeholder="Did creditors and debtors"
                         value={responsibilities}
                         dataKey="responsibilities"
@@ -62,8 +62,8 @@ function WorkForm ({companyName, positionTitle, responsibilities, startDate, end
                     </div>
 
                     <div className="formBtns">
-                        <button className="delete" type="button" onClick={onDelete}>Delete</button>
-                        <button className="submit" type="submit">Submit</button>
+                        <button type="button" className="delete" onClick={onDelete}>Delete</button>
+                        <button type="submit" className="submit">Submit</button>
                     </div>
                 </form>
             </div>

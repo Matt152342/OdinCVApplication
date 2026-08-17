@@ -6,14 +6,25 @@ function InputGroup ({dataKey, id, labelText, onChange, placeholder, type, value
                 {labelText}
             </label>
 
-            <input
-                id={id}
-                type={type}
-                placeholder={placeholder}
-                value={value}
-                data-key={dataKey}
-                onChange={onChange}
-            />
+            {type === "textarea" ? 
+                (
+                <textarea
+                    id={id}
+                    placeholder={placeholder}
+                    value={value}
+                    data-key={dataKey}
+                    onChange={onChange}
+                />
+                ) : (
+                <input
+                    id={id}
+                    type={type}
+                    placeholder={placeholder}
+                    value={value}
+                    data-key={dataKey}
+                    onChange={onChange}
+                />
+            )}
         </div>
     )
 }
