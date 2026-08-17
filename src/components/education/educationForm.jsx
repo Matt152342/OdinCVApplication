@@ -64,7 +64,7 @@ function EducationForm ({schoolName, degree, startDate, endDate, location, onCha
 
                     <div className="educationBtns">
                         <button className="delete" type="button" onClick={onDelete}>Delete</button>
-                        <button className="submit" type="submit">Submit</button>
+                        {onSubmit && (<button className="submit" type="submit">Submit</button>)}
                     </div>
                 </form>
             </div>

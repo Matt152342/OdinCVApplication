@@ -63,7 +63,7 @@ function WorkForm ({companyName, positionTitle, responsibilities, startDate, end
 
                     <div className="formBtns">
                         <button type="button" className="delete" onClick={onDelete}>Delete</button>
-                        <button type="submit" className="submit">Submit</button>
+                        {onSubmit && (<button type="submit" className="submit">Submit</button>)} 
                     </div>
                 </form>
             </div>
