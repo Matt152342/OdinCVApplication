@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InputGroup from "../inputGroup";
 
-function EducationForm ({schoolName, degree, startDate, endDate, location, onChange, onSubmit}) {
+function EducationForm ({schoolName, degree, startDate, endDate, location, onChange, onSubmit, onDelete}) {
     const [isOpen, setisOpen] = useState(false);
 
     return (
@@ -63,7 +63,7 @@ function EducationForm ({schoolName, degree, startDate, endDate, location, onCha
                     />
 
                     <div className="educationBtns">
-                        <button className="delete">Delete</button>
+                        <button className="delete" type="button" onClick={onDelete}>Delete</button>
                         <button className="submit" type="submit">Submit</button>
                     </div>
                 </form>

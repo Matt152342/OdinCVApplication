@@ -64,6 +64,12 @@ function App() {
     setEducationInfo(initialEducation);
   }
 
+  function handleEducationDelete (id, e) {
+    return setEducationList((prevList) => {
+      return prevList.filter((item) => item.id !== id);
+    })
+  }
+
   function handleEducationListChange (id, e) {
     const { key } = e.target.dataset;
     const value = e.target.value;
@@ -89,6 +95,12 @@ function App() {
 
     setWorkList([...workList, newEntry]);
     setWorkInfo(initialWork);
+  }
+
+  function handleWorkDelete (id, e) {
+    return setWorkList((prevList) => {
+      return prevList.filter((item) => item.id !== id);
+    })
   }
 
   function handleWorkListChange (id, e) {
@@ -117,58 +129,68 @@ function App() {
           onChange={handlePersonalInfoChange}
         />
 
-        {
-          educationList.map((item) => {
-            return (
-              <EducationForm
-                key={item.id}
-                schoolName={item.schoolName}
-                degree={item.degree}
-                startDate={item.startDate}
-                endDate={item.endDate}
-                location={item.location}
-                onChange={(e) => handleEducationListChange(item.id, e)}
-              />
-            )
-          })
-        }
+        <div className="educationForms">
+          <h2>Education</h2>
 
-        <EducationForm
-          schoolName={educationInfo.schoolName}
-          degree={educationInfo.degree}
-          startDate={educationInfo.startDate}
-          endDate={educationInfo.endDate}
-          location={educationInfo.location}
-          onChange={handleEducationInfoChange}
-          onSubmit={handleEducationSubmit}
-        />
+          {
+            educationList.map((item) => {
+              return (
+                <EducationForm
+                  key={item.id}
+                  schoolName={item.schoolName}
+                  degree={item.degree}
+                  startDate={item.startDate}
+                  endDate={item.endDate}
+                  location={item.location}
+                  onChange={(e) => handleEducationListChange(item.id, e)}
+                  onDelete={(e) => handleEducationDelete(item.id, e)}
+                />
+              )
+            })
+          }
 
-        {
-          workList.map((item) => {
-            return (
-              <WorkForm
-                key={item.id}
-                companyName={item.companyName}
-                positionTitle={item.positionTitle}
-                responsibilities={item.responsibilities}
-                startDate={item.startDate}
-                endDate={item.endDate}
-                onChange={(e) => handleWorkListChange(item.id, e)}
-              />
-            )
-          })
-        }
+          <EducationForm
+            schoolName={educationInfo.schoolName}
+            degree={educationInfo.degree}
+            startDate={educationInfo.startDate}
+            endDate={educationInfo.endDate}
+            location={educationInfo.location}
+            onChange={handleEducationInfoChange}
+            onSubmit={handleEducationSubmit}
+          />
+        </div>
 
-        <WorkForm
-          companyName={workInfo.companyName}
-          positionTitle={workInfo.positionTitle}
-          responsibilities={workInfo.responsibilities}
-          startDate={workInfo.startDate}
-          endDate={workInfo.endDate}
-          onChange={handleWorkInfoChange}
-          onSubmit={handleWorkSubmit}
-        />
-      </div>
+        <div className="workForms">
+          <h2>Work Experience</h2>
+
+          {
+            workList.map((item) => {
+              return (
+                <WorkForm
+                  key={item.id}
+                  companyName={item.companyName}
+                  positionTitle={item.positionTitle}
+                  responsibilities={item.responsibilities}
+                  startDate={item.startDate}
+                  endDate={item.endDate}
+                  onChange={(e) => handleWorkListChange(item.id, e)}
+                  onDelete={(e) => handleWorkDelete(item.id)}
+                />
+              )
+            })
+          }
+
+          <WorkForm
+            companyName={workInfo.companyName}
+            positionTitle={workInfo.positionTitle}
+            responsibilities={workInfo.responsibilities}
+            startDate={workInfo.startDate}
+            endDate={workInfo.endDate}
+            onChange={handleWorkInfoChange}
+            onSubmit={handleWorkSubmit}
+          />
+        </div>
+        </div>
 
       <div className="cvSection">
         <PersonalDetails

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import InputGroup  from "../inputGroup";
 
-function WorkForm ({companyName, positionTitle, responsibilities, startDate, endDate, onChange, onSubmit}) {
+function WorkForm ({companyName, positionTitle, responsibilities, startDate, endDate, onChange, onSubmit, onDelete}) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className="formContainer">
             <div className="formHeader" onClick={() => setIsOpen(!isOpen)}>
-                <h3>Work Experience</h3>
+                <h3>{companyName ? `${companyName}` : "New Work Experience"}</h3>
             </div>
 
             <div className={`workForm ${isOpen ? 'open' : 'hidden'}`}>
@@ -62,7 +62,7 @@ function WorkForm ({companyName, positionTitle, responsibilities, startDate, end
                     </div>
 
                     <div className="formBtns">
-                        <button className="cancel">Cancel</button>
+                        <button className="delete" type="button" onClick={onDelete}>Delete</button>
                         <button className="submit" type="submit">Submit</button>
                     </div>
                 </form>
