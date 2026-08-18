@@ -4,7 +4,7 @@ import InputGroup  from "../inputGroup";
 function PersonalForm ({address, email, fullname, phoneNumber, onChange}) {
     
     return (
-        <div className="formContainer">
+        <div className="personalFormContainer">
             <div className="formHeader">
                 <h2>Personal Details</h2>
             </div>

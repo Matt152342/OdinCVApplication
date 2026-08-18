@@ -1,5 +1,13 @@
 *, *::before, *::after {
   box-sizing: border-box;
+  color: var(--text);
+}
+
+:root {
+    --text: #403D88;
+    --background: #AF719D;
+    --subBack: #F8B2B2;
+    --accent: #8B639B;
 }
 
 html, body {
@@ -9,14 +17,35 @@ html, body {
     margin: 0;
     padding: 0;
 
-    background-color: azure;
+    background-color: var(--background);
+}
+
+h1 {
+    margin: 0 0 .5rem 0;
+}
+
+h2 {
+    margin: 1.5rem 0 .5rem 0;
+    padding: .1rem;
+
+    background-color: var(--subBack);
+    border-radius: .25rem;
+
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    margin: 0 0 .25rem 0;
 }
 
 #root {
     min-height: 100%;
 
     margin: 0;
-    padding: 2rem;
+    padding: 1rem;
 
     display: flex;
     flex-direction: row;
@@ -24,8 +53,64 @@ html, body {
     align-items: flex-start;
 }
 
+.formSection {
+    margin-bottom: 1rem;
+}
+
 .cvSection {
-    height: 100%;
+    width: 210mm;
+    min-height: 297mm;
+
+    padding: 20mm;
+
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+
+    overflow: hidden;
+}
+
+.personalDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.educationDetails {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.educationDetails > div > * {
+    margin: 0 0 .5rem 0;
+    padding: 0;
+}
+
+.workDetails {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.workDetails > * {
+    width: 100%;
+}
+
+.workHead {
+    margin: .5rem 0 .1rem 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.workHead > * {
+    margin: 0 0 .5rem 0;
 }
 
 .hidden {
