@@ -121,6 +121,10 @@ function App() {
   return (
     <>
       <div className="formSection">
+
+        <div className="formHeader">
+            <h2>Personal Details</h2>
+        </div>
         <PersonalForm
           address={personalInfo.address}
           email={personalInfo.email}

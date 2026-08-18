@@ -1,14 +1,11 @@
 import { useState } from "react";
 import InputGroup  from "../inputGroup";
+import './personalStyles.css';
 
 function PersonalForm ({address, email, fullname, phoneNumber, onChange}) {
     
     return (
-        <div className="personalFormContainer">
-            <div className="formHeader">
-                <h2>Personal Details</h2>
-            </div>
-
+        <div className="formContainer">
             <form className="personalForm">
                 <InputGroup 
                     id="fullname"

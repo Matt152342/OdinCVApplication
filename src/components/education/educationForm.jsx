@@ -1,5 +1,6 @@
 import { useState } from "react";
 import InputGroup from "../inputGroup";
+import './educationStyles.css';
 
 function EducationForm ({schoolName, degree, startDate, endDate, location, onChange, onSubmit, onDelete}) {
     const [isOpen, setisOpen] = useState(false);

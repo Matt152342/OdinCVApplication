@@ -1,5 +1,6 @@
 import { useState } from "react";
 import InputGroup  from "../inputGroup";
+import './workStyles.css';
 
 function WorkForm ({companyName, positionTitle, responsibilities, startDate, endDate, onChange, onSubmit, onDelete}) {
     const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +62,7 @@ function WorkForm ({companyName, positionTitle, responsibilities, startDate, end
                         />
                     </div>
 
-                    <div className="formBtns">
+                    <div className="workBtns">
                         <button type="button" className="delete" onClick={onDelete}>Delete</button>
                         {onSubmit && (<button type="submit" className="submit">Submit</button>)} 
                     </div>
