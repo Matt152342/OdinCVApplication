@@ -1,5 +1,6 @@
 import { useState } from "react";
 import InputGroup from "../inputGroup";
+import arrowImage from '../../assets/arrow.png';
 import './educationStyles.css';
 
 function EducationForm ({schoolName, degree, startDate, endDate, location, onChange, onSubmit, onDelete}) {
@@ -9,6 +10,7 @@ function EducationForm ({schoolName, degree, startDate, endDate, location, onCha
         <div className="formContainer">
             <div className="formHeader" onClick={() => setisOpen(!isOpen)}>
                 <h3>{schoolName ? `${schoolName}` : "New Education"}</h3>
+                <img className={`arrowIcon ${isOpen ? 'open' : ''}`} src={arrowImage} alt="" />
             </div>
 
             <div className={`educationForm ${isOpen ? 'open' : 'hidden'}`}>

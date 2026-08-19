@@ -1,5 +1,6 @@
 import { useState } from "react";
 import InputGroup  from "../inputGroup";
+import arrowImage from '../../assets/arrow.png';
 import './workStyles.css';
 
 function WorkForm ({companyName, positionTitle, responsibilities, startDate, endDate, onChange, onSubmit, onDelete}) {
@@ -9,6 +10,7 @@ function WorkForm ({companyName, positionTitle, responsibilities, startDate, end
         <div className="formContainer">
             <div className="formHeader" onClick={() => setIsOpen(!isOpen)}>
                 <h3>{companyName ? `${companyName}` : "New Work Experience"}</h3>
+                <img className={`arrowIcon ${isOpen ? 'open' : ''}`} src={arrowImage} alt="" />
             </div>
 
             <div className={`workForm ${isOpen ? 'open' : 'hidden'}`}>
