@@ -58,7 +58,7 @@ button {
     min-height: 100%;
 
     margin: 0;
-    padding: 1rem;
+    padding: 2rem;
 
     display: flex;
     flex-direction: row;
@@ -78,6 +78,17 @@ button {
 .formSection {
     height: 100%;
     margin-bottom: 1rem;
+
+    flex: 1 1 auto;
+
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.formSection > * {
+    width: 60%;
 }
 
 .formContainer {
@@ -157,4 +168,21 @@ button {
 
 .hidden {
     display: none;
+}
+
+@media (max-width: 1200px) {
+    #root {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .formSection {
+        width: 80%;
+    }
+
+    .formSection > * {
+        width: 100%;
+    }
 }
